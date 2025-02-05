@@ -95,19 +95,19 @@ func GetDictionary(word string) (*Output, error) {
 
 	dictionary := response.Output[0]
 	for i := 0; i < len(dictionary.Meanings); i++ {
-		if dictionary.Meanings[i].PartOfSpeech == "noun" {
+		if dictionary.Meanings[i].PartOfSpeech == "noun" && result.Noun == nil {
 			result.Noun = &dictionary.Meanings[i].Definitions[0].Definition
 		}
-		if dictionary.Meanings[i].PartOfSpeech == "verb" {
+		if dictionary.Meanings[i].PartOfSpeech == "verb" && result.Verb == nil {
 			result.Verb = &dictionary.Meanings[i].Definitions[0].Definition
 		}
-		if dictionary.Meanings[i].PartOfSpeech == "adverb" {
+		if dictionary.Meanings[i].PartOfSpeech == "adverb" && result.Adverb == nil {
 			result.Adverb = &dictionary.Meanings[i].Definitions[0].Definition
 		}
-		if dictionary.Meanings[i].PartOfSpeech == "adjective" {
+		if dictionary.Meanings[i].PartOfSpeech == "adjective" && result.Adjective == nil {
 			result.Adjective = &dictionary.Meanings[i].Definitions[0].Definition
 		}
-		if dictionary.Meanings[i].PartOfSpeech == "interjection" {
+		if dictionary.Meanings[i].PartOfSpeech == "interjection" && result.Interjection == nil {
 			result.Interjection = &dictionary.Meanings[i].Definitions[0].Definition
 		}
 	}
