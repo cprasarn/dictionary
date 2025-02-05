@@ -96,19 +96,19 @@ func GetDictionary(word string) (*Output, error) {
 	for i := 0; i < len(response.Output); i++ {
 		dictionary := response.Output[i]
 		for j := 0; j < len(dictionary.Meanings); j++ {
-			if dictionary.Meanings[j].PartOfSpeech == "noun" && result.Noun == nil {
+			if result.Noun == nil && dictionary.Meanings[j].PartOfSpeech == "noun" {
 				result.Noun = &dictionary.Meanings[j].Definitions[0].Definition
 			}
-			if dictionary.Meanings[j].PartOfSpeech == "verb" && result.Verb == nil {
+			if result.Verb == nil && dictionary.Meanings[j].PartOfSpeech == "verb" {
 				result.Verb = &dictionary.Meanings[j].Definitions[0].Definition
 			}
-			if dictionary.Meanings[j].PartOfSpeech == "adverb" && result.Adverb == nil {
+			if result.Adverb == nil && dictionary.Meanings[j].PartOfSpeech == "adverb" {
 				result.Adverb = &dictionary.Meanings[j].Definitions[0].Definition
 			}
-			if dictionary.Meanings[j].PartOfSpeech == "adjective" && result.Adjective == nil {
+			if result.Adjective == nil && dictionary.Meanings[j].PartOfSpeech == "adjective" {
 				result.Adjective = &dictionary.Meanings[j].Definitions[0].Definition
 			}
-			if dictionary.Meanings[j].PartOfSpeech == "interjection" && result.Interjection == nil {
+			if result.Interjection == nil && dictionary.Meanings[j].PartOfSpeech == "interjection" {
 				result.Interjection = &dictionary.Meanings[j].Definitions[0].Definition
 			}
 		}
