@@ -1,0 +1,83 @@
+package core
+
+import (
+	"log"
+	"os"
+
+	"github.com/line/line-bot-sdk-go/v8/linebot/messaging_api"
+)
+
+func Send(t string, d Output) error {
+	bot, err := messaging_api.NewMessagingApiAPI(
+		os.Getenv("LINE_CHANNEL_TOKEN"),
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var messages []messaging_api.MessageInterface
+	if d.Noun != nil {
+		noun := messaging_api.TextMessage{
+			Text: "Noun: " + *d.Noun,
+		}
+		messages = append(messages, noun)
+	}
+
+	if d.Verb != nil {
+		verb := messaging_api.TextMessage{
+			Text: "Verb: " + *d.Verb,
+		}
+
+		messages = append(messages, verb)
+	}
+
+	if d.Adverb != nil {
+		verb := messaging_api.TextMessage{
+			Text: "Adverb: " + *d.Adverb,
+		}
+
+		messages = append(messages, verb)
+	}
+
+	if d.Adjective != nil {
+		verb := messaging_api.TextMessage{
+			Text: "Adjective: " + *d.Adjective,
+		}
+
+		messages = append(messages, verb)
+	}
+
+	if d.Interjection != nil {
+		verb := messaging_api.TextMessage{
+			Text: "Interjection: " + *d.Interjection,
+		}
+
+		messages = append(messages, verb)
+	}
+
+	if d.Error != nil {
+		messages = []messaging_api.MessageInterface{
+			messaging_api.TextMessage{
+				Text: d.Error.Message,
+			},
+		}
+	}
+
+	log.Printf("%v", messages)
+
+	_, err = bot.ReplyMessage(
+		&messaging_api.ReplyMessageRequest{
+			ReplyToken: t,
+			Messages:   messages,
+		},
+	)
+
+	if err != nil {
+		log.Print(err)
+		return err
+	}
+
+	log.Println("Sent text reply.")
+
+	return nil
+}
