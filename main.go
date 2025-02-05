@@ -47,7 +47,7 @@ func handleRequest(ctx context.Context, data json.RawMessage) {
 	}
 
 	for _, event := range cb.Events {
-		log.Printf("/callback called%+v...\n", event)
+		log.Printf("/dictionary called: %+v...\n", event)
 
 		switch event.Type {
 		case "message":
