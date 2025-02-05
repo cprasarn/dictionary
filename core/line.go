@@ -32,35 +32,35 @@ func Send(t string, d Output) error {
 	}
 
 	if d.Adverb != nil {
-		verb := messaging_api.TextMessage{
+		adverb := messaging_api.TextMessage{
 			Text: "Adverb: " + *d.Adverb,
 		}
 
-		messages = append(messages, verb)
+		messages = append(messages, adverb)
 	}
 
 	if d.Adjective != nil {
-		verb := messaging_api.TextMessage{
+		adjective := messaging_api.TextMessage{
 			Text: "Adjective: " + *d.Adjective,
 		}
 
-		messages = append(messages, verb)
+		messages = append(messages, adjective)
 	}
 
 	if d.Interjection != nil {
-		verb := messaging_api.TextMessage{
+		interjection := messaging_api.TextMessage{
 			Text: "Interjection: " + *d.Interjection,
 		}
 
-		messages = append(messages, verb)
+		messages = append(messages, interjection)
 	}
 
 	if d.Error != nil {
-		messages = []messaging_api.MessageInterface{
-			messaging_api.TextMessage{
-				Text: d.Error.Message,
-			},
+		e := messaging_api.TextMessage{
+			Text: d.Error.Message,
 		}
+
+		messages = append(messages, e)
 	}
 
 	log.Printf("%v", messages)
