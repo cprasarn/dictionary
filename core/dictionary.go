@@ -30,6 +30,7 @@ type Definition struct {
 	Definition string   `json:"definition"`
 	Synonyms   []string `json:"synonyms"`
 	Antonyms   []string `json:"antonyms"`
+	Example    *string  `json:"example"`
 }
 
 type Meanings struct {
