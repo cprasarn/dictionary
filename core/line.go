@@ -1,13 +1,14 @@
 package core
 
 import (
+	"dictionary/models"
 	"log"
 	"os"
 
 	"github.com/line/line-bot-sdk-go/v8/linebot/messaging_api"
 )
 
-func Send(t string, d Output) error {
+func Send(t string, d models.Output) error {
 	bot, err := messaging_api.NewMessagingApiAPI(
 		os.Getenv("LINE_CHANNEL_TOKEN"),
 	)
