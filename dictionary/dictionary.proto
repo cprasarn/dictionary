@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option go_package = "https://github.com/cprasarn/dictionary/dictionary";
+
+package dictionary;
+
+service Dictionary {
+    rpc LookUp (DictionaryRequest) returns (DictionaryResponse) {}
+}
+
+message DictionaryRequest {
+    string word = 1;
+}
+
+message License {
+    string name = 1;
+    string url = 2;
+}
+
+message Phonetic {
+    optional string text = 1;
+    optional string audio = 2;
+    optional string sourceUrl = 3;
+    optional License license = 4;
+}
+
+message Definition {
+    string definition = 1;
+    repeated string synonyms = 2;
+    repeated string antonyms = 3;
+    optional string example = 4;
+}
+
+message Meaning {
+    string partOfSpeech = 1;
+    repeated Definition definitions = 2;
+    repeated string synonyms = 3;
+    repeated string antonyms = 4;
+}
+
+message Response {
+    string word = 1;
+    string phonetic = 2;
+    repeated Phonetic phonetics = 3;
+    repeated Meaning meanings = 4;
+    optional License license = 5;
+    repeated string sourceUrls = 6;
+}
+
+message DictionaryResponse {
+    repeated Response output = 1;
+}
