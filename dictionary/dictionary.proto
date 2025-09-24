@@ -12,6 +12,12 @@ message DictionaryRequest {
     string word = 1;
 }
 
+message ErrorResponse {
+    string title = 1;
+    string message = 2;
+    string resolution = 3;
+}
+
 message License {
     string name = 1;
     string url = 2;
@@ -47,6 +53,15 @@ message Response {
     repeated string sourceUrls = 6;
 }
 
-message DictionaryResponse {
+message Output {
     repeated Response output = 1;
+}
+
+message DictionaryResponse {
+    optional string noun = 1;
+    optional string verb = 2;
+    optional string adverb = 3;
+    optional string adjective = 4;
+    optional string interjection = 5;
+    optional ErrorResponse error = 6;
 }
